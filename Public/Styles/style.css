@@ -35,6 +35,15 @@
   --transition: all 0.3s ease;
 }
 
+/* Correction pour Bootstrap - Annuler le margin sur les ul de la navbar */
+#main-header nav ul,
+.mobile-menu ul {
+  margin-bottom: 0 !important; /* Le !important est nécessaire pour surcharger Bootstrap */
+}
+
+.hidden {
+  display: none !important;
+}
 
 * {
   margin: 0;
@@ -47,4 +56,509 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Typographie */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--white) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light) !important;
+  border-color: var(--primary-light) !important;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-light);
+  border-color: var(--secondary-light);
+}
+.btn-large {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled {
+  background-color: var(--primary-light);
+  border-color: var(--primary-dark);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem 1rem 0.8rem 2.8rem;
+  border: 1px solid #ddd;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 124, 89, 0.2);
+}
+
+
+/* Header et Navigation */
+#main-header {
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+
+#main-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 15px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+
+}
+
+.logo h1 {
+  color: var(--primary-color);
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.desktop-menu {
+  display: flex;
+}
+
+.desktop-menu li {
+  margin-left: 1.5rem;
+}
+
+.desktop-menu a {
+  color: var(--text-color);
+  font-weight: 500;
+  position: relative;
+}
+
+.desktop-menu a:hover,
+.desktop-menu a.active {
+  color: var(--primary-color);
+}
+
+.desktop-menu a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.user-menu {
+  margin-left: 1.5rem;
+  position: relative;
+}
+
+
+.user-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-size: 1.2rem;
+}
+
+.user-btn i:first-child {
+  margin-right: 5px;
+  font-size: 1.5rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  width: 150px;
+  display: none;
+  z-index: 10;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px 15px;
+  color: var(--text-color);
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a.active {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+}
+
+.user-menu:hover .dropdown-menu {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: var(--text-color);
+  transition: var(--transition);
+}
+
+.mobile-menu {
+  display: none;
+  background-color: var(--white);
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/* Style général pour tous les boutons dans le menu mobile */
+.mobile-menu a.login-btn,
+.mobile-menu a.register-btn,
+.mobile-menu a.logout-btn,
+.mobile-menu a.profil-btn,
+.mobile-menu a.admin-btn {
+  display: block;
+  text-align: center;
+  padding: 0.6rem 1.5rem;
+  border-radius: 0.75rem;
+  margin: 0.5rem 0;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+/* Connexion / Inscription - couleur principale */
+.mobile-menu a.login-btn,
+.mobile-menu a.register-btn {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.mobile-menu a.login-btn:hover,
+.mobile-menu a.register-btn:hover {
+  background-color: #e0ac00;
+}
+
+/* Déconnexion - rouge clair */
+.mobile-menu a.logout-btn {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.mobile-menu a.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Mon profil - bleu */
+.mobile-menu a.profil-btn {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.mobile-menu a.profil-btn:hover {
+  background-color: #1976d2;
+}
+
+/* Administration - violet */
+.mobile-menu a.admin-btn {
+  background-color: #9c27b0;
+  color: #fff;
+}
+
+.mobile-menu a.admin-btn:hover {
+  background-color: #7b1fa2;
+}
+
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Plus moderne que margin-bottom */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-menu li {
+  margin-bottom: 1rem;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 0.5rem 0;
+  color: var(--text-color);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a.active {
+  color: var(--primary-color);
+}
+
+.d-flex{
+  display: flex;
+  margin-top: 1rem;
+}
+
+
+/* Slogan */
+.slogan {
+  text-align: center;
+}
+
+.slogan h2, .slogan .h2 {
+  padding: 20px;
+}
+
+.slogan .search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: solid 3px #f5f5f5;
+  max-width: 800px;
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0px 4px 15px 1px rgba(0, 0, 0, 0.25);
+}
+
+.slogan .search-bar form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.slogan .search-bar form .d-flex {
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slogan .search-bar form .d-flex div {
+  width: 100%;
+  position: relative;
+    margin-bottom: 1rem;
+}
+
+.slogan .search-bar form .d-flex div div {
+  width: 100%;
+}
+
+.slogan .search-bar form .d-flex div i {
+  margin-right: 13px;
+  color: var(--primary-light);
+  position: absolute;
+  left: 15px;
+  top: 13px;
+}
+
+.slogan .search-bar form .d-flex div input {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  padding-left: 45px;
+  height: 50px;
+  width: 100%;
+  color: #4e4e4e;
+}
+
+.slogan .search-bar form .d-flex div input[type=date]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.slogan .search-bar form .d-flex .search-btn {
+  width: 100%;
+}
+
+.slogan .search-bar form .d-flex .search-btn button {
+  width: 100%;
+  color: white;
+  height: 60px;
+}
+
+.slogan-error {
+  min-height: 600px;
+}
+
+
+/* Hero */
+.hero-section {
+  background-color: var(--primary);
+  padding: 100px 0;
+  color: var(--white);
+}
+
+.hero-section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero-section .search-bar {
+  margin: 0 auto;
+}
+
+
+footer {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 2rem 1rem;
+  font-family: var(--font-main);
+  text-align: center;
+}
+
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-info p,
+.footer-info a {
+  color: var(--white);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+  color: var(--secondary-light);
+}
+
+.separator {
+  width: 1px;
+  height: 18px;
+  background-color: var(--white);
+  opacity: 0.3;
+}
+
+.text {
+  font-size: 0.9rem;
+  color: var(--secondary-light);
+  margin: 0.5rem 0;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--light-gray);
+  margin-top: 0.5rem;
 }
