@@ -18,14 +18,11 @@ class Mysql
 
     public function __construct()
     {
-        // Appel du fichier avec les paramètres de la BDD
-        $config = require BASE_PATH . "/config.php";
-
-        $this->db_name = $config['MYSQL_DATABASE'];
-        $this->db_user = $config['MYSQL_USER'];
-        $this->db_password = $config['DB_PASSMYSQL_PASSWORDWORD'];
-        $this->db_port = $config['MYSQL_PORT'];
-        $this->db_host = $config['MYSQL_HOST'];
+        $this->db_name = getenv('MYSQL_DATABASE');
+        $this->db_user = getenv('MYSQL_USER');
+        $this->db_password = getenv('MYSQL_PASSWORD');  // attention à bien mettre MYSQL_PASSWORD et pas une faute de frappe
+        $this->db_port = getenv('MYSQL_PORT');
+        $this->db_host = getenv('MYSQL_HOST');
     }
 
     // SINGLETON pour instancier la class Mysql une seule fois
