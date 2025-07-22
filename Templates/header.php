@@ -42,7 +42,7 @@ use App\Security\Security;
 <header id="main-header">
         <div class="container">
             <div class="logo">
-                <img src="../Public/Assets/Logo/logo-primary.png" alt="Logo EcoRide">
+                <img src="./Public/Assets/Logo/logo-primary.png" alt="Logo EcoRide">
                 <a href="?controller=page&action=accueil">
                     <h1>EcoRide</h1>
                 </a>
