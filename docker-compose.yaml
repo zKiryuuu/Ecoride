@@ -1,0 +1,65 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecoride_app
+    volumes:
+      - ./:/var/www/html/
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_PORT: ${MYSQL_PORT}
+      MYSQL_HOST: ${MYSQL_HOST}
+    ports:
+      - 80:80
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    container_name: mysql_db_ecoride_test
+    restart: always
+    ports:
+      - 3307:3306
+    volumes:
+      - db:/var/lib/mysql/
+      - ./data/ecorideDB.sql:/docker-entrypoint-initdb.d/ecorideDB.sql # Pour migrer les données existantes vers la bdd
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE : ${MYSQL_DATABASE}
+      MYSQL_USER : ${MYSQL_USER}
+      MYSQL_PASSWORD : ${MYSQL_PASSWORD}
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_ecoride_test
+    restart: always
+    platform: linux/amd64
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: ${PMA_HOST}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - db
+  
+  mongo:
+    image: mongo:6.0
+    container_name: mongo_db_ecoride_test
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+      # Pour faire la creation de l'user, la bdd et l'import de la collection Avis dans le conteneur docker 
+      - ./mongo-seed/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
+      - ./mongo-seed/seed.json:/docker-entrypoint-initdb.d/seed.json
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_DB_NAME: ${MONGO_DB_NAME} 
+    
+volumes:
+  db:
+  mongo_data:
