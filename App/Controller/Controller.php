@@ -77,29 +77,29 @@ class Controller
     }
 
     // Fonction pour appeler à la vue via le path de la page et avec des params specifiques
-    protected function render(string $path, array $params = []): void
+    protected function render(string $path, array $params = [], bool $isError = false): void
     {
-        // Path du fichier avec la vue
         $filePath = BASE_PATH . "/Templates/" . $path . ".php";
 
         try {
-            // Si le path est introuvable
             if (!file_exists($filePath)) {
                 throw new Exception("Le fichier n'existe pas" . $filePath);
-            }
-            /**
-             *  Si le path est trouvé, nous créons des variables à partir du tableau $params 
-             *  et on appel la vue*/
-            else {
+            } else {
                 extract($params);
                 require_once $filePath;
             }
         } catch (Exception $e) {
+            if ($isError) {
+                // Si on est déjà dans une erreur, on stoppe la récursion
+                echo "Erreur critique : " . $e->getMessage();
+                return;
+            }
             $this->render(
-                "/Errors/default",
+                "/Errors/404",
                 [
                     'error' => $e->getMessage()
-                ]
+                ],
+                true // Indique qu'on est déjà en mode erreur
             );
         }
     }
