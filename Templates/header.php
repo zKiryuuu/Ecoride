@@ -42,7 +42,6 @@ use App\Security\Security;
 <header id="main-header">
         <div class="container">
             <div class="logo">
-                <img src="./Public/Assets/Logo/logo-primary.png" alt="Logo EcoRide">
                 <a href="?controller=page&action=accueil">
                     <h1>EcoRide</h1>
                 </a>
@@ -58,12 +57,6 @@ use App\Security\Security;
                     <li class="nav-item">
                         <a class="nav-link" href="?controller=page&action=contact">Contact</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?controller=page&action=ui">Ui</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="?controller=page&action=test">Test</a>
-                    </li>
                 </ul>
                 <div class="user-menu">
                     <button class="user-btn">
@@ -72,9 +65,6 @@ use App\Security\Security;
                     </button>
                     <div class="dropdown-menu">
                         <?php if (Security::islogged()): ?>
-                            <?php if (Security::isAdmin()): ?>
-                                <a href="?controller=admin&action=dashboard">Administration</a>
-                            <?php endif; ?>
                             <a href="?controller=user&action=profil">Mon profil</a>
                             <a href="?controller=auth&action=logOut">Déconnexion</a>
                         <?php else: ?>
