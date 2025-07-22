@@ -741,7 +741,7 @@ class CovoiturageController extends Controller
             $passagerMail = $passager['passager_mail'];
             $driverPseudo = ucfirst($passager['driver_pseudo']); // Pseudo du chauffeur
             // On crée le lien vers le site pour valider le covoiturage, avec les id chiffrés
-            $linkToSite = "http://localhost/Eco-1/index.php?controller=page&action=validateCovoiturage&passagerId=" .
+            $linkToSite = "https://ecoride-old-sun-8183.fly.dev/index.php?controller=page&action=validateCovoiturage&passagerId=" .
                 $passagerEncryptId[$passager['passager_id']] .
                 "&covoiturageId=" . $covoiturageEncryptId[$covoiturage['covoiturage_id']];
 
