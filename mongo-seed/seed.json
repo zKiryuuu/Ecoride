@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "681f6474660e18ec4f0bf913"
+  },
+  "titre": "autre test",
+  "avis": "ca fonctioneee",
+  "note": 5,
+  "accepte": 0,
+  "user_id_auteur": 65,
+  "user_id_cible": 47,
+  "covoiturage_id": 16
+},
+{
+  "_id": {
+    "$oid": "6829d02bd96a6656c901f3c2"
+  },
+  "titre": "Premiere test",
+  "avis": "Voici un test fonctionnelle, comme quoi la connexion mongo est ok",
+  "note": 4,
+  "accepte": 1,
+  "user_id_auteur": 59,
+  "user_id_cible": 65,
+  "covoiturage_id": 12
+}]

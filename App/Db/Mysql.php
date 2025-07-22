@@ -21,11 +21,11 @@ class Mysql
         // Appel du fichier avec les paramètres de la BDD
         $config = require BASE_PATH . "/config.php";
 
-        $this->db_name = $config['DB_NAME'];
-        $this->db_user = $config['DB_USER'];
-        $this->db_password = $config['DB_PASSWORD'];
-        $this->db_port = $config['DB_PORT'];
-        $this->db_host = $config['DB_HOST'];
+        $this->db_name = $config['MYSQL_DATABASE'];
+        $this->db_user = $config['MYSQL_USER'];
+        $this->db_password = $config['DB_PASSMYSQL_PASSWORDWORD'];
+        $this->db_port = $config['MYSQL_PORT'];
+        $this->db_host = $config['MYSQL_HOST'];
     }
 
     // SINGLETON pour instancier la class Mysql une seule fois
@@ -38,20 +38,20 @@ class Mysql
     }
 
     // Ajout des params à la propipriété pdo et connexion a la BDD via Objet PDO
-    public function getPdo()
+    public function getPdo(): PDO
     {
         try {
-            if (is_null($this->pdo)) {
-                $dsn = 'mysql:dbname=' . $this->db_name .
-                    ';charset=utf8' .
-                    ';host=' . $this->db_host .
-                    ';port=' . $this->db_port;
+            $host = $this->db_host;
+            $db_name = $this->db_name;
+            $db_port = $this->db_port;
 
-                $this->pdo = new PDO($dsn, $this->db_user, $this->db_password);
+            if (is_null($this->pdo)) {
+                $dsn = "mysql:host=$host;port=$db_port;dbname=$db_name;charset=utf8";
+                return $this->pdo = new PDO($dsn, $this->db_user, $this->db_password);
             }
             return $this->pdo;
         } catch (Exception $e) {
-            echo ('Error : ' . $e);
+            throw $e;
         }
     }
 }

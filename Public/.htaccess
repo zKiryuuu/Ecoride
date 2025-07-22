@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# To get direct acces to all the files and folders
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect everything to index.php
+# QSA = to keep the url params
+# L = To say that it's the last rule
+RewriteRule ^ index.php [QSA,L]

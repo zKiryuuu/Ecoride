@@ -1,0 +1,39 @@
+# See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
+
+name: Déploiment automatique via FTP
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  FTP-deploy-action:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Github checkout
+        uses: actions/checkout@v4.2.2
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{secrets.FTP_SERVER}}
+          username: ${{secrets.FTP_USERNAME}}
+          password: ${{secrets.FTP_PASSWORD}}
+          exclude: |
+              **/.git*
+              **/.git*/**
+              **/node_modules/**
+              **/vendor/**
+              **/documentation/**
+              **/Dockerfile
+              **/docker-compose.yaml*
+              **/.dockerignore
+              **/Readme.md
+              **/package.json
+              **/package-lock.json
+              **/composer.json
+              **/composer.lock
+              **/.env
+              **/.env.example
+              **/mongo-seed/**

@@ -12,6 +12,7 @@ class Mongodb
     private $db_name_mongo;
     private $db_user_mongo;
     private $db_password_mongo;
+    private $db_port_mongo;
     private $db_host_mongo;
     private static $_instance = null;
 
@@ -20,10 +21,11 @@ class Mongodb
         // Appel du fichier avec les paramètres de la BDD
         $config = require BASE_PATH . "/config.php";
 
+        $this->db_user_mongo = $config['MONGO_INITDB_ROOT_USERNAME'];
+        $this->db_password_mongo = $config['MONGO_INITDB_ROOT_PASSWORD'];
+        $this->db_host_mongo = $config['MONGO_HOST'];
+        $this->db_port_mongo = $config['MONGO_PORT'];
         $this->db_name_mongo = $config['MONGO_DB_NAME'];
-        $this->db_user_mongo = $config['MONGO_DB_USER'];
-        $this->db_password_mongo = $config['MONGO_DB_PASSWORD'];
-        $this->db_host_mongo = $config['MONGO_DB_HOST'];
     }
 
 
@@ -42,6 +44,7 @@ class Mongodb
         $user = $this->db_user_mongo;
         $password = $this->db_password_mongo;
         $host = $this->db_host_mongo;
+        $port = $this->db_port_mongo;
         $dbName = $this->db_name_mongo;
 
         try {
