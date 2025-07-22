@@ -157,7 +157,7 @@ class CovoiturageController extends Controller
         }
 
         $this->render(
-            "Covoiturage/covoit",
+            "Covoiturage/all-covoiturages",
             [
                 "covoiturages" => $covoiturages,
                 "covoiturage" => $covoiturage ?? "",

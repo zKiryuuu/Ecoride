@@ -5,47 +5,55 @@ require_once BASE_PATH . '/Templates/header.php';
 
 <main>
   <!-- Section Hero (slogan + formulaire de recherche) -->
-  <section class="hero-section">
+    <section class="hero-section">
     <div class="container">
       <div class="slogan" id="slogan">
-        <h2 class="subtitle-text text-white">
+        <h2 class="subtitle-text">
           Voyagez avec EcoRide <br />
           le covoiturage écologique à votre portée.
         </h2>
 
         <div class="search-bar">
           <form method="get">
-            <div class="d-flex">
+            <div class="form-slogan">
               <!-- Adresse départ -->
-              <div>
-                <i class="bi bi-record-circle"></i>
-                <input type="text" name="adresse_depart" placeholder="Adresse de départ"
-                  value="<?= $adresseDepart ?>"
-                  class="form-control content-text <?= isset($errors['adresseDepartEmpty']) ? 'is-invalid' : '' ?>" />
-                <?php if (isset($errors['adresseDepartEmpty'])): ?>
-                  <div class="invalid-tooltip"><?= $errors['adresseDepartEmpty'] ?></div>
-                <?php endif; ?>
+              <div class="form-group">
+                <div class="input-wrapper">
+                  <input type="text" 
+                         name="adresse_depart" 
+                         placeholder="Adresse de départ"
+                         value="<?= $adresseDepart ?>"
+                         class="form-control content-text <?= isset($errors['adresseDepartEmpty']) ? 'is-invalid' : '' ?>" />
+                  <?php if (isset($errors['adresseDepartEmpty'])): ?>
+                    <div class="invalid-tooltip"><?= $errors['adresseDepartEmpty'] ?></div>
+                  <?php endif; ?>
+                </div>
               </div>
 
               <!-- Adresse arrivée -->
-              <div>
-                <i class="bi bi-geo-alt-fill"></i>
-                <input type="text" name="adresse_arrivee" placeholder="Adresse d’arrivée"
-                  value="<?= $adresseArrivee ?>"
-                  class="form-control content-text <?= isset($errors['adresseArriveeEmpty']) ? 'is-invalid' : '' ?>" />
-                <?php if (isset($errors['adresseArriveeEmpty'])): ?>
-                  <div class="invalid-tooltip"><?= $errors['adresseArriveeEmpty'] ?></div>
-                <?php endif; ?>
+              <div class="form-group">
+                <div class="input-wrapper">
+                  <input type="text" 
+                         name="adresse_arrivee" 
+                         placeholder="Adresse d'arrivée"
+                         value="<?= $adresseArrivee ?>"
+                         class="form-control content-text <?= isset($errors['adresseArriveeEmpty']) ? 'is-invalid' : '' ?>" />
+                  <?php if (isset($errors['adresseArriveeEmpty'])): ?>
+                    <div class="invalid-tooltip"><?= $errors['adresseArriveeEmpty'] ?></div>
+                  <?php endif; ?>
+                </div>
               </div>
 
-              <!-- Date -->
-              <div class="date">
-                <i class="bi bi-calendar2-week-fill"></i>
-                <input type="date" name="date_heure_depart" value="<?= $dateDepart ?>"
-                  class="form-control content-text <?= isset($errors['dateDepartEmpty']) ? 'is-invalid' : '' ?>" />
-                <?php if (isset($errors['dateDepartEmpty'])): ?>
-                  <div class="invalid-tooltip"><?= $errors['dateDepartEmpty'] ?></div>
-                <?php endif; ?>
+              <div class="form-group">
+                <div class="input-wrapper">
+                  <input type="date" 
+                         name="date_heure_depart" 
+                         value="<?= $dateDepart ?>"
+                         class="form-control content-text <?= (isset($errors['dateDepartEmpty'])) ? 'is-invalid' : '' ?>" />
+                  <?php if (isset($errors['dateDepartEmpty'])) : ?>
+                    <div class="invalid-tooltip"><?= $errors['dateDepartEmpty'] ?></div>
+                  <?php endif; ?>
+                </div>
               </div>
             </div>
 
@@ -64,7 +72,7 @@ require_once BASE_PATH . '/Templates/header.php';
             <!-- Bouton de recherche -->
             <div class="d-flex">
               <div class="search-btn">
-                <button class="btn btn-primary" type="submit" name="search">Rechercher</button>
+                <button class="btn btn-filled w-100" type="submit" name="search">Rechercher</button>
               </div>
             </div>
           </form>
