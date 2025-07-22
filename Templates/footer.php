@@ -14,9 +14,6 @@
     </div>
 </footer>
 
-<!-- Import du JS commun à toutes les pages -->
-<script src="./Scripts/mobileUsage.js"></script>
-
 <!--Import du JS du Bootstrap-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Import du JS pour la librairie DataTable -->
@@ -40,7 +37,7 @@ $scripts = [
     'singUp' => ['showPassword.js', 'driverForm.js'],
     'preferencesInscription' => ['preferencesForm.js'],
     'profil' => ['preferencesForm.js'],
-    'accueil' => ['searchCovoiturage.js'],
+    'accueil' => ['searchCovoiturage.js', 'mobileUsage.js'],
     'mesCovoiturages' => ['startCovoiturage.js'],
     'validateAvisAndComments' => ['employeEspace.js'],
     'adminEspace' => ['showPassword.js', 'adminEspace.js'],
@@ -52,7 +49,7 @@ $currentAction = $_GET['action'] ?? '';
 // on parcours le tableau et on crée une balise script pour chaque script de l'action
 if (isset($scripts[$currentAction])) {
     foreach ($scripts[$currentAction] as $script) {
-        echo "<script src=\"/Scripts/{$script}\"></script>\n";
+        echo "<script src=\"./Scripts/{$script}\"></script>\n";
     }
 }
 ?>
