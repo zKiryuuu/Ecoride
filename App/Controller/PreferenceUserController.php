@@ -47,8 +47,12 @@ class PreferenceUserController extends Controller
         // Tableau d'erreurs
         $errors = [];
         $errors2 = [];
-        // L'id de l'utilisateur
-        $user_id = $_SESSION['user']['id'];
+        // Vérification de la session utilisateur
+        if (isset($_SESSION['user']) && isset($_SESSION['user']['id'])) {
+            $user_id = $_SESSION['user']['id'];
+        } else {
+            throw new Exception("Utilisateur non connecté");
+        }
 
         try {
             $preference = new PreferenceUser;
