@@ -3,8 +3,6 @@
 require_once BASE_PATH . '/Templates/header.php';
 ?>
 
-<script src="./Script/mobileUsage.js"></script>
-
 <main>
   <!-- Section Hero (slogan + formulaire de recherche) -->
     <section class="hero-section">
